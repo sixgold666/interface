@@ -1,0 +1,56 @@
+<div class="doc">
+  <h2 class="title">{{data.name}}</h2>
+
+  <div class="usable">
+    <h3>简要描述</h3>
+    <p>{{data.name}}接口</p>
+  </div>
+
+  <div class="usable">
+    <h3>请求URL</h3>
+    <p>{{data.path}}</p>
+  </div>
+
+  <div class="usable">
+    <h3>请求方式</h3>
+    <p>{{data.method}}</p>
+  </div>
+
+  <div class="usable">
+    <h3>参数</h3>
+    <table style="width:90%;margin:10px 0 0 10px" *ngIf="data.params">
+      <tr>
+        <th>参数名</th>
+        <th>必选</th>
+        <th>类型</th>
+        <th>说明</th>
+      </tr>
+      <tr *ngFor="let item of data.params">
+        <td>{{item.name}}</td>
+        <td *ngIf="item.require">是</td>
+        <td *ngIf="!item.require">否</td>
+        <td>{{item.type}}</td>
+        <td>{{item.desc}}</td>
+      </tr>
+    </table>
+    <p *ngIf="!data.params">无</p>
+  </div>
+
+  <div class="usable">
+    <h3>返回参数说明</h3>
+    <table style="width:90%;margin:10px 0 0 10px" *ngIf="data.retParams">
+      <tr>
+        <th>参数名</th>
+        <th>类型</th>
+        <th>说明</th>
+      </tr>
+      <tr *ngFor="let item of data.retParams">
+        <td>{{item.name}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.desc}}</td>
+      </tr>
+    </table>
+    <p *ngIf="!data.retParams">无</p>
+  </div>
+
+</div>

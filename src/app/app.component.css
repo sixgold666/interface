@@ -1,0 +1,21 @@
+.list{
+  width:22%;
+  height:100%;
+  background: #FAFAFA;
+  border-right:1px solid #E6E6E6;
+  float: left;
+}
+.mat-expansion-panel{
+  box-shadow: none !important;
+}
+.exCon{
+  padding-left: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.con{
+  float: left;
+  width:78%;
+  height:100%;
+  overflow: auto;
+}

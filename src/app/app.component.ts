@@ -1,16 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
-export class AppComponent {
-  interfaceList = [];
+export class AppComponent implements OnInit {
+  interfaceList: any = [];
   data: any;
-  constructor(public http: HttpClient) {
-    this.interfaceList = interfaceList;
+  constructor(public http: HttpClient, public location: Location) {}
+
+  async ngOnInit() {
+    if (environment.production) {
+      this.interfaceList = await this.http
+        .post(this.location.path(), {}, { responseType: 'json' })
+        .toPromise();
+    } else {
+      this.interfaceList = interfaceList;
+    }
   }
 
   changetab(item) {
@@ -19,42 +37,48 @@ export class AppComponent {
 }
 
 const interfaceList = [
-  {name: '用户相关', children: [
-    {
-      name: '用户登录',
-      value: {
-        'method': 'GET',
-        'name': '用户登录',
-        'path':  '/schema/hello',
-        'schema': {
-          'additionalProperties': false,
-          'properties': {
-            'p': {'type': 'string'},
-            'q': {'type': 'number'}
+  {
+    name: '用户相关',
+    children: [
+      {
+        name: '用户登录',
+        value: {
+          method: 'GET',
+          name: '用户登录',
+          path: '/schema/hello',
+          schema: {
+            additionalProperties: false,
+            properties: {
+              p: { type: 'string' },
+              q: { type: 'number' },
             },
-          'type': 'object'
-        }
-      }
-    },
-    {
-      name: '用户注册',
-      value: {
-        'method': 'GET',
-        'name': '用户注册',
-        'path':  '/schema/hello',
-        'schema': {
-          'additionalProperties': false,
-          'properties': {
-            'p': {'type': 'string'},
-            'q': {'type': 'number'}
+            type: 'object',
           },
-          'type': 'object'
-        }
-      }
-    }
-  ]},
-  {name: '数据相关', children: [
-    {name: '城市数据', value: {name: '城市数据'}},
-    {name: '省份数据', value: {name: '省份数据'}}
-    ]},
-  ];
+        },
+      },
+      {
+        name: '用户注册',
+        value: {
+          method: 'GET',
+          name: '用户注册',
+          path: '/schema/hello',
+          schema: {
+            additionalProperties: false,
+            properties: {
+              p: { type: 'string' },
+              q: { type: 'number' },
+            },
+            type: 'object',
+          },
+        },
+      },
+    ],
+  },
+  {
+    name: '数据相关',
+    children: [
+      { name: '城市数据', value: { name: '城市数据' } },
+      { name: '省份数据', value: { name: '省份数据' } },
+    ],
+  },
+];

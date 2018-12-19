@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { ComponentFactoryResolver } from "@angular/core/src/render3";
+import { Component, OnInit, Input } from '@angular/core';
 
 interface IApiParam {
   name: string;
@@ -30,53 +29,49 @@ export interface IApiOption {
 }
 
 @Component({
-  selector: "app-doc",
-  templateUrl: "./doc.component.html",
-  styleUrls: ["./doc.component.css"]
+  selector: 'app-doc',
+  templateUrl: './doc.component.html',
+  styleUrls: ['./doc.component.css'],
 })
 export class DocComponent implements OnInit {
-  jsonData: any;
-
   @Input()
   data: IApiOption;
   constructor() {}
 
   ngOnInit() {
-    this.data = {
-      method: "GET",
-      name: "用户登录",
-      path: "/schema/hello",
-      schema: {
-        additionalProperties: false,
-        properties: {
-          p: { type: "string" },
-          q: { type: "number" }
-        },
-        type: "object"
-      },
-      params: [
-        {
-          name: "usernmae",
-          require: true,
-          type: "string",
-          desc: "用户名"
-        },
-        {
-          name: "password",
-          require: false,
-          type: "string",
-          desc: "密码"
-        }
-      ],
-      retParams: [
-        {
-          name: "usernmae",
-          type: "string",
-          desc: "用户组id，1：超级管理员；2：普通用户"
-        }
-      ]
-    };
-    this.jsonData = JSON.stringify(this.data);
-    console.log(this.data);
+    // this.data = {
+    //   method: 'GET',
+    //   name: '用户登录',
+    //   path: '/schema/hello',
+    //   schema: {
+    //     additionalProperties: false,
+    //     properties: {
+    //       p: { type: 'string' },
+    //       q: { type: 'number' },
+    //     },
+    //     type: 'object',
+    //   },
+    //   params: [
+    //     {
+    //       name: 'usernmae',
+    //       require: true,
+    //       type: 'string',
+    //       desc: '用户名',
+    //     },
+    //     {
+    //       name: 'password',
+    //       require: false,
+    //       type: 'string',
+    //       desc: '密码',
+    //     },
+    //   ],
+    //   retParams: [
+    //     {
+    //       name: 'usernmae',
+    //       type: 'string',
+    //       desc: '用户组id，1：超级管理员；2：普通用户',
+    //     },
+    //   ],
+    // };
   }
 }

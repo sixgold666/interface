@@ -5,6 +5,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
 } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +19,16 @@ import {
 export class AppComponent implements OnInit {
   interfaceList: any = [];
   data: any;
-  constructor(public http: HttpClient, public location: Location) {
-    this.interfaceList = interfaceList;
-  }
+  constructor(public http: HttpClient, public location: Location) {}
 
   async ngOnInit() {
-    // this.interfaceList = await this.http
-    //   .post(this.location.path(), {}, { responseType: 'json' })
-    //   .toPromise();
+    if (environment.production) {
+      this.interfaceList = await this.http
+        .post(this.location.path(), {}, { responseType: 'json' })
+        .toPromise();
+    } else {
+      this.interfaceList = interfaceList;
+    }
   }
 
   changetab(item) {

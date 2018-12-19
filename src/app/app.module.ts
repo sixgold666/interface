@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatExpansionModule,
@@ -14,21 +14,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { DocComponent } from './doc/doc.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DocComponent
-  ],
+  declarations: [AppComponent, DocComponent],
   imports: [
-    BrowserModule,
+    CommonModule,
     CdkTableModule,
     CdkTreeModule,
     MatButtonModule,
     MatExpansionModule,
     MatIconModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

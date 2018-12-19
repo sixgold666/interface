@@ -1,9 +1,9 @@
-<div class="doc" *ngIf="data !== undefined">
+<div class="doc" *ngIf="data">
   <h2 class="title">{{data.name}}</h2>
 
-  <div class="usable">
+  <div class="usable" *ngIf="data.desc">
     <h3>简要描述</h3>
-    <p>{{data.name}}接口</p>
+    <p>{{data.desc}}</p>
   </div>
 
   <div class="usable">
@@ -16,9 +16,14 @@
     <p>{{data.method}}</p>
   </div>
 
-  <div class="usable">
+  <div class="usable" *ngIf="data.schema">
     <h3>参数</h3>
-    <table style="width:90%;margin:10px 0 0 10px" *ngIf="data.params">
+    <pre>{{ data.schema | json }}</pre>
+  </div>
+
+  <div class="usable" *ngIf="data.params">
+    <h3>非校验参数</h3>
+    <table style="width:90%;margin:10px 0 0 10px">
       <tr>
         <th>参数名</th>
         <th>必选</th>
@@ -36,9 +41,14 @@
     <p *ngIf="!data.params">无</p>
   </div>
 
-  <div class="usable">
+  <div class="usable" *ngIf="data.return">
+    <h3>返回示例</h3>
+    <pre>{{ data.return | json }}</pre>
+  </div>
+
+  <div class="usable" *ngIf="data.retParams">
     <h3>返回参数说明</h3>
-    <table style="width:90%;margin:10px 0 0 10px" *ngIf="data.retParams">
+    <table style="width:90%;margin:10px 0 0 10px">
       <tr>
         <th>参数名</th>
         <th>类型</th>
@@ -50,7 +60,6 @@
         <td>{{item.desc}}</td>
       </tr>
     </table>
-    <p *ngIf="!data.retParams">无</p>
   </div>
 
 </div>

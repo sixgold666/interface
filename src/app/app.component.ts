@@ -19,13 +19,13 @@ export class AppComponent implements OnInit {
   interfaceList: any = [];
   data: any;
   constructor(public http: HttpClient, public location: Location) {
-    // this.interfaceList = interfaceList;
+    this.interfaceList = interfaceList;
   }
 
   async ngOnInit() {
-    this.interfaceList = await this.http
-      .post(this.location.path(), {}, { responseType: 'json' })
-      .toPromise();
+    // this.interfaceList = await this.http
+    //   .post(this.location.path(), {}, { responseType: 'json' })
+    //   .toPromise();
   }
 
   changetab(item) {

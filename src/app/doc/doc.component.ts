@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ComponentFactoryResolver } from '@angular/core/src/render3';
 
 interface IApiParam {
   name: string;
@@ -35,8 +34,6 @@ export interface IApiOption {
   styleUrls: ['./doc.component.css'],
 })
 export class DocComponent implements OnInit {
-  jsonData: any;
-
   @Input()
   data: IApiOption;
   constructor() {}
@@ -76,6 +73,5 @@ export class DocComponent implements OnInit {
     //     },
     //   ],
     // };
-    this.jsonData = JSON.stringify(this.data);
   }
 }
